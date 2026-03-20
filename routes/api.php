@@ -2,10 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
-Route::get('/status', function () {
-    return response()->json([
-        'message' => 'API de Q-LESS',
-        'status' => 'ok'
-    ]);
-});
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::apiresource('productos', ProductoController::class)->middleware('auth:sanctum');
